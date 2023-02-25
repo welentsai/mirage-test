@@ -1,0 +1,17 @@
+diff --git a/node_modules/pretender/dist/pretender.js b/node_modules/pretender/dist/pretender.js
+index a715b72..849f4e9 100644
+--- a/node_modules/pretender/dist/pretender.js
++++ b/node_modules/pretender/dist/pretender.js
+@@ -1426,6 +1426,12 @@ var Pretender = (function (RouteRecognizer, FakeXMLHttpRequest) {
+ 	    if ('onload' in xhr) {
+ 	        evts.push('load');
+ 	    }
++
++		// welen
++		if('onloadend' in xhr) {
++			evts.push('loadend');
++		}
++
+ 	    // add progress event for async calls
+ 	    // avoid using progress events for sync calls, they will hang https://bugs.webkit.org/show_bug.cgi?id=40996.
+ 	    if (fakeXHR.async && fakeXHR.responseType !== 'arraybuffer') {
