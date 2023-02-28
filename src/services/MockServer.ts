@@ -1,18 +1,20 @@
 import { createServer } from "miragejs";
 
 export function mockServer() {
-    return createServer({
+    const server = createServer({
         routes() {
-          this.passthrough();
+          // this.passthrough();
           this.passthrough("https://api.github.com/**")
 
-          this.passthrough(request => {
-            console.warn(`Incoming Unhandle request) ${request.url}`)
-            if (request.url.includes('https://reqres.in/api/')) {
-                return true
-            }
-            return false
-          })
+          this.passthrough("https://reqres.in/api/**")
+
+          // this.passthrough(request => {
+          //   console.warn(`Incoming Unhandle request) ${request.url}`)
+          //   if (request.url.includes('https://reqres.in/api/')) {
+          //       return true
+          //   }
+          //   return false
+          // })
     
           this.namespace = "/learning";
           this.urlPrefix = "http://localhost:3333"
@@ -24,4 +26,14 @@ export function mockServer() {
           ]);
         },
     });
+
+    const NativeXMLHttpRequest = window.XMLHttpRequest;
+    window.XMLHttpRequest = function XMLHttpRequest() {
+      // const request = new NativeXMLHttpRequest(arguments);
+      const request :XMLHttpRequest = new NativeXMLHttpRequest();
+      delete request.onloadend;
+      return request;
+    };
+
+    return server
 }

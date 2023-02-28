@@ -9,12 +9,12 @@ import * as O from 'fp-ts/Option'
 function App() {
   mockServer()
   const NativeXMLHttpRequest = window.XMLHttpRequest;
-  window.XMLHttpRequest = function XMLHttpRequest() {
-    // const request = new NativeXMLHttpRequest(arguments);
-    const request :XMLHttpRequest = new NativeXMLHttpRequest();
-    delete request.onloadend;
-    return request;
-  };
+  // window.XMLHttpRequest = function XMLHttpRequest() {
+  //   // const request = new NativeXMLHttpRequest(arguments);
+  //   const request :XMLHttpRequest = new NativeXMLHttpRequest();
+  //   delete request.onloadend;
+  //   return request;
+  // };
 
   const [count, setCount] = useState(0)
 
